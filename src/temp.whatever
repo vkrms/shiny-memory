@@ -1,0 +1,29 @@
+import { extendTheme } from '@chakra-ui/react'
+import type { StyleFunctionProps } from '@chakra-ui/styled-system'
+
+import { createMultiStyleConfigHelpers } from '@chakra-ui/styled-system'
+
+// This function creates a set of function that helps us create multipart component styles.
+const helpers = createMultiStyleConfigHelpers(['modal', 'content'])
+
+
+const Modal = helpers.defineMultiStyleConfig({
+    variants: {
+        'no-scroll': {
+            modal: {
+                maxHeight: '100vh',
+                overflow: 'hidden',
+            },
+            content: {
+                height: '86%',
+                overflow: 'auto',
+            },
+        },
+    }
+})
+
+const theme = extendTheme({
+    components: {
+        Modal,
+    }
+})
