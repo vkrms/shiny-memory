@@ -12,7 +12,7 @@ import {
   useMultiStyleConfig,
   Spinner
 } from '@chakra-ui/react'
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 
 import Lorem from 'react-lorem-component'
 
@@ -20,9 +20,12 @@ const [StylesProvider] = createStylesContext('Menu');
 
 
 export default function Temp() {
+  console.log('rerererendered')
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const videoRef = useRef(null);
+  const randomImage = 'https://picsum.photos/700/467'
+  const srcRef = useRef(randomImage);
 
   function videoHandler(e) {
       const video = e.target
@@ -42,24 +45,18 @@ export default function Temp() {
   }
 
   function handleOpen() {
-    setSrc(undefined)
     onOpen()
-    fetch('https://picsum.photos/700/467')
+    fetch(randomImage)
       .then(res => res.blob())
       .then(blob => {
-        const url = URL.createObjectURL(blob)
-        setSrc(url)
+          srcRef.current = URL.createObjectURL(blob)
+          console.log({srcRef})
       })
   }
 
   const styles = useMultiStyleConfig('Modal', {
     variant: 'no-scroll',
   })
-
-  const [src, setSrc] = useState('')
-
-  // useEffect(() => {
-  // }, [])
 
   return (
     <div className="my-thing">
@@ -87,7 +84,7 @@ export default function Temp() {
             <ModalBody>
               <div className="modal-flex">
                 <div className="modal__img-wrap">
-                  <img src={src} className="modal-img"/>
+                  <img src={srcRef.current} className="modal-img"/>
                   <Spinner color='red.500' className="modal-spinner"/>
                 </div>
                 <Lorem count={5} seed={Math.floor(Math.random() * 100)}/>
