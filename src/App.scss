@@ -87,3 +87,23 @@
 img {
     max-width: 100%;
 }
+
+.modal__img-wrap {
+  border-radius: 6px;
+  position: relative;
+  aspect-ratio: 700/467;
+}
+
+.modal-spinner {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
+
+img.modal-img {
+  border-radius: 6px;
+}

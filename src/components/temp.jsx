@@ -9,7 +9,8 @@ import {
   Button,
   useDisclosure,
   createStylesContext,
-  useMultiStyleConfig
+  useMultiStyleConfig,
+  Spinner
 } from '@chakra-ui/react'
 
 import Lorem from 'react-lorem-component'
@@ -42,14 +43,15 @@ export default function Temp() {
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent sx={{'--chakra-sizes-md': '1024px'}}>
-            <ModalHeader>Modal Title</ModalHeader>
+            <ModalHeader>Открой еще раз, и будет новый контент</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
               <div className="modal-flex">
-                <div>
-                  <img src="https://picsum.photos/700/467"/>                  
+                <div className="modal__img-wrap">
+                  <img src="https://picsum.photos/700/467" className="modal-img"/>                  
+                  <Spinner color='red.500' className="modal-spinner"/>
                 </div>
-                <Lorem count={3} seed={Math.floor(Math.random() * 100)}/>
+                <Lorem count={5} seed={Math.floor(Math.random() * 100)}/>
               </div>
             </ModalBody>
 
