@@ -52,7 +52,7 @@
 }
 
 .my-thing {
-  color: #fff;
+  // color: #fff;
 }
 
 .link {
@@ -106,4 +106,8 @@ img {
 
 img.modal-img {
   border-radius: 6px;
+}
+
+.blend {
+  mix-blend-mode: difference;
 }
